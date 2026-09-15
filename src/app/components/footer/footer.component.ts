@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
  */
 const CONTATO = {
   endereco: 'Av. Júlio Buono, 866 - Vila Gustavo, São Paulo/SP',
-  telefoneExibicao: '(11) 91234-5678',
-  whatsappNumero: '5511912345678',
+  telefoneExibicao: '(11) 95736-5736',
+  whatsappNumero: '5511957365736',
   instagramUsuario: 'tendadeumbandacaboclatapaji',
 };
 
