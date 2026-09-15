@@ -1,0 +1,214 @@
+.page {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 56px 28px 80px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 44px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header__logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 6px 18px -6px var(--shadow);
+}
+
+.header__title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.header__subtitle {
+  margin-top: 10px;
+  color: var(--ink-muted);
+  font-size: 1rem;
+  max-width: 46ch;
+}
+
+.month-select {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.month-select__label {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.month-select__input {
+  appearance: none;
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23d97397' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat right 16px center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  padding: 10px 40px 10px 18px;
+  min-width: 200px;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+
+  &:hover {
+    border-color: rgba(201, 161, 92, 0.5);
+  }
+
+  &:focus-visible {
+    border-color: var(--accent-strong);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+
+  option {
+    background: var(--surface);
+    color: var(--ink);
+  }
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 26px;
+}
+
+.grid-wrap {
+  position: relative;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 26px;
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.grid--esmaecida {
+  opacity: 0.35;
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding-top: 40px;
+}
+
+.loading-overlay__img {
+  width: 72px;
+  height: 72px;
+  filter: drop-shadow(0 6px 14px rgba(217, 115, 151, 0.35));
+}
+
+.loading-overlay__text {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--ink-muted);
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 4px 14px;
+  border-radius: 20px;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 26px;
+}
+
+.skeleton-card {
+  aspect-ratio: 4 / 5.2;
+  border-radius: 18px 18px 10px 10px;
+  background: linear-gradient(100deg, var(--surface) 40%, var(--surface-raised) 50%, var(--surface) 60%);
+  background-size: 220% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  border: 1px solid var(--line);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -20% 0;
+  }
+}
+
+.state {
+  text-align: center;
+  padding: 80px 20px;
+  border: 1px dashed var(--line);
+  border-radius: 16px;
+}
+
+.state__title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.state__desc {
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+}
+
+.state__retry {
+  margin-top: 20px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent-strong);
+  padding: 9px 22px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    background: var(--accent);
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 560px) {
+  .header {
+    align-items: flex-start;
+  }
+
+  .month-select__input {
+    min-width: 0;
+    width: 100%;
+  }
+}

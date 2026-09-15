@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .giro {
+      transform-origin: 50px 50px;
+      animation: girar 3.2s linear infinite;
+    }
+    .petala {
+      animation: respirar 1.6s ease-in-out infinite;
+    }
+    .p0 { animation-delay: 0s; }
+    .p1 { animation-delay: 0.2s; }
+    .p2 { animation-delay: 0.4s; }
+    .p3 { animation-delay: 0.6s; }
+    .p4 { animation-delay: 0.8s; }
+    .p5 { animation-delay: 1s; }
+    .p6 { animation-delay: 1.2s; }
+    .p7 { animation-delay: 1.4s; }
+    @keyframes girar {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes respirar {
+      0%, 100% { opacity: 0.22; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+  <g class="giro">
+    <ellipse class="petala p0" cx="50" cy="18" rx="5" ry="11" fill="#d97397" transform="rotate(0 50 50)" />
+    <ellipse class="petala p1" cx="50" cy="18" rx="5" ry="11" fill="#d97397" transform="rotate(45 50 50)" />
+    <ellipse class="petala p2" cx="50" cy="18" rx="5" ry="11" fill="#d97397" transform="rotate(90 50 50)" />
+    <ellipse class="petala p3" cx="50" cy="18" rx="5" ry="11" fill="#d97397" transform="rotate(135 50 50)" />
+    <ellipse class="petala p4" cx="50" cy="18" rx="5" ry="11" fill="#d97397" transform="rotate(180 50 50)" />
+    <ellipse class="petala p5" cx="50" cy="18" rx="5" ry="11" fill="#d97397" transform="rotate(225 50 50)" />
+    <ellipse class="petala p6" cx="50" cy="18" rx="5" ry="11" fill="#d97397" transform="rotate(270 50 50)" />
+    <ellipse class="petala p7" cx="50" cy="18" rx="5" ry="11" fill="#d97397" transform="rotate(315 50 50)" />
+  </g>
+  <circle cx="50" cy="50" r="6" fill="#bd5478" />
+</svg>

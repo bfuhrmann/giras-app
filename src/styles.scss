@@ -1,0 +1,71 @@
+:root {
+  /* paleta clara - rosa terreiro */
+  --bg: #fffdfe;
+  --bg-radial: #fdeef3;
+  --surface: #ffffff;
+  --surface-raised: #fdf1f5;
+  --accent: #d97397;
+  --accent-strong: #bd5478;
+  --ink: #3a2530;
+  --ink-muted: #8a6b78;
+  --ink-faint: #a97e8e;
+  --line: rgba(217, 115, 151, 0.22);
+  --shadow: rgba(217, 115, 151, 0.22);
+
+  --font-display: 'Fraunces', 'Iowan Old Style', serif;
+  --font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(ellipse 1200px 700px at 50% -10%, var(--bg-radial), var(--bg) 60%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  margin: 0;
+  color: var(--ink);
+}
+
+p {
+  margin: 0;
+}
+
+button,
+select {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

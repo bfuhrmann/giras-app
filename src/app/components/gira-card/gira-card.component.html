@@ -1,0 +1,37 @@
+<article class="card" [style.--delay.ms]="index * 60">
+  <figure class="card__media">
+    <img
+      *ngIf="imageUrl && !imageFailed"
+      [src]="imageUrl"
+      [alt]="gira.title"
+      [loading]="index === 0 ? 'eager' : 'lazy'"
+      [attr.fetchpriority]="index === 0 ? 'high' : null"
+      (error)="onImageError()"
+    />
+    <div class="card__media-fallback" *ngIf="!imageUrl || imageFailed">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path
+          d="M32 6c4 8-6 10-6 18a6 6 0 0 0 12 0c0-3-2-5-2-8 5 3 8 9 8 15a12 12 0 1 1-24 0c0-11 7-16 12-25Z"
+        />
+      </svg>
+    </div>
+    <div class="card__media-veil"></div>
+    <div class="card__date" aria-hidden="true">
+      <span class="card__date-num">{{ dia }}</span>
+      <span class="card__date-mes">{{ mesAbrev }}</span>
+    </div>
+  </figure>
+
+  <div class="card__body">
+    <h3 class="card__title">{{ gira.title }}</h3>
+    <p class="card__desc">{{ gira.description }}</p>
+
+    <div class="card__footer">
+      <p class="card__when">{{ dataFormatada }}</p>
+      <p class="card__status" [class.card__status--pendente]="!gira.confirmGira">
+        <span class="card__status-dot"></span>
+        {{ gira.confirmGira ? 'Confirmada' : 'A confirmar' }}
+      </p>
+    </div>
+  </div>
+</article>

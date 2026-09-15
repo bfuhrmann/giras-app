@@ -1,0 +1,60 @@
+<div class="page">
+  <header class="header">
+    <div class="header__brand">
+      <img class="header__logo" src="logo-tuct.png" alt="Tenda de Umbanda Cabocla Tapajy" width="64" height="64" />
+      <div class="header__text">
+        <h1 class="header__title">Calendário de giras</h1>
+        <p class="header__subtitle">Sessões públicas abertas à comunidade, mês a mês.</p>
+      </div>
+    </div>
+
+    <label class="month-select">
+      <span class="month-select__label">Ver mês</span>
+      <select
+        class="month-select__input"
+        [ngModel]="mesSelecionado"
+        (ngModelChange)="onMesChange($event)"
+        [disabled]="trocandoMes()"
+      >
+        <option *ngFor="let m of meses" [value]="m.valor">{{ m.nome }}</option>
+      </select>
+    </label>
+  </header>
+
+  <main class="content">
+    <div class="grid-wrap" *ngIf="!carregandoInicial() && !erro() && giras().length > 0">
+      <ul class="grid" [class.grid--esmaecida]="trocandoMes()">
+        <li *ngFor="let gira of giras(); let i = index">
+          <app-gira-card [gira]="gira" [index]="i"></app-gira-card>
+        </li>
+      </ul>
+
+      <div class="loading-overlay" *ngIf="trocandoMes()">
+        <img
+          class="loading-overlay__img"
+          src="loading-ponto.svg"
+          alt=""
+          aria-hidden="true"
+          width="88"
+          height="88"
+        />
+        <p class="loading-overlay__text">Buscando giras de {{ nomeMesSelecionado }}…</p>
+      </div>
+    </div>
+
+    <div class="skeleton-grid" *ngIf="carregandoInicial()">
+      <div class="skeleton-card" *ngFor="let _ of [1, 2, 3]"></div>
+    </div>
+
+    <div class="state" *ngIf="!carregandoInicial() && erro()">
+      <p class="state__title">Não foi possível carregar as giras</p>
+      <p class="state__desc">Verifique sua conexão e tente novamente.</p>
+      <button class="state__retry" (click)="tentarNovamente()">Tentar novamente</button>
+    </div>
+
+    <div class="state" *ngIf="!carregandoInicial() && !erro() && !trocandoMes() && giras().length === 0">
+      <p class="state__title">Nenhuma gira encontrada</p>
+      <p class="state__desc">Não há sessões públicas cadastradas para este mês.</p>
+    </div>
+  </main>
+</div>
