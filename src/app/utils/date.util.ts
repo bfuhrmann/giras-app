@@ -55,6 +55,24 @@ export function diaSemanaAbrev(dateGira: string): string {
   return DIAS_SEMANA[parseLocal(dateGira).getDay()].slice(0, 3);
 }
 
+/** true se a data/hora da gira já passou em relação a agora. */
+export function jaPassou(dateGira: string): boolean {
+  return parseLocal(dateGira).getTime() < Date.now();
+}
+
+/** Giras futuras/de hoje primeiro (mais próximas no topo), giras passadas por último. */
+export function ordenarGiras<T extends { dateGira: string }>(giras: T[]): T[] {
+  return [...giras].sort((a, b) => {
+    const passadaA = jaPassou(a.dateGira);
+    const passadaB = jaPassou(b.dateGira);
+    if (passadaA !== passadaB) return passadaA ? 1 : -1;
+
+    const tempoA = parseLocal(a.dateGira).getTime();
+    const tempoB = parseLocal(b.dateGira).getTime();
+    return passadaA ? tempoB - tempoA : tempoA - tempoB;
+  });
+}
+
 /** Ex.: "terça-feira, 8 de setembro às 19h30" */
 export function dataCompletaFormatada(dateGira: string): string {
   const d = parseLocal(dateGira);

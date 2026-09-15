@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Gira } from '../../models/gira.model';
 import { environment } from '../../../environments/environment';
-import { dataCompletaFormatada, diaDoMes, mesAbreviado } from '../../utils/date.util';
+import { dataCompletaFormatada, diaDoMes, jaPassou, mesAbreviado } from '../../utils/date.util';
 
 @Component({
   selector: 'app-gira-card',
@@ -46,6 +46,10 @@ export class GiraCardComponent {
 
   get dataFormatada(): string {
     return dataCompletaFormatada(this.gira.dateGira);
+  }
+
+  get passada(): boolean {
+    return jaPassou(this.gira.dateGira);
   }
 
   onImageError(): void {

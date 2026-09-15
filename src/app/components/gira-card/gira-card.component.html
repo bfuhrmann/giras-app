@@ -1,4 +1,4 @@
-<article class="card" [style.--delay.ms]="index * 60">
+<article class="card" [class.card--passada]="passada" [style.--delay.ms]="index * 60">
   <figure class="card__media">
     <img
       *ngIf="imageUrl && !imageFailed"
@@ -28,9 +28,13 @@
 
     <div class="card__footer">
       <p class="card__when">{{ dataFormatada }}</p>
-      <p class="card__status" [class.card__status--pendente]="!gira.confirmGira">
+      <p class="card__status" *ngIf="!passada" [class.card__status--pendente]="!gira.confirmGira">
         <span class="card__status-dot"></span>
         {{ gira.confirmGira ? 'Confirmada' : 'A confirmar' }}
+      </p>
+      <p class="card__status card__status--passada" *ngIf="passada">
+        <span class="card__status-dot"></span>
+        Já aconteceu
       </p>
     </div>
   </div>
