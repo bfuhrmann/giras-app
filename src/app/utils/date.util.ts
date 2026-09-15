@@ -60,16 +60,14 @@ export function jaPassou(dateGira: string): boolean {
   return parseLocal(dateGira).getTime() < Date.now();
 }
 
-/** Giras futuras/de hoje primeiro (mais próximas no topo), giras passadas por último. */
+/** Giras futuras/de hoje primeiro (mais próximas no topo), giras passadas por último — sempre em ordem crescente de dia dentro de cada grupo. */
 export function ordenarGiras<T extends { dateGira: string }>(giras: T[]): T[] {
   return [...giras].sort((a, b) => {
     const passadaA = jaPassou(a.dateGira);
     const passadaB = jaPassou(b.dateGira);
     if (passadaA !== passadaB) return passadaA ? 1 : -1;
 
-    const tempoA = parseLocal(a.dateGira).getTime();
-    const tempoB = parseLocal(b.dateGira).getTime();
-    return passadaA ? tempoB - tempoA : tempoA - tempoB;
+    return parseLocal(a.dateGira).getTime() - parseLocal(b.dateGira).getTime();
   });
 }
 
