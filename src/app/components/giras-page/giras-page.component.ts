@@ -5,7 +5,7 @@ import { finalize } from 'rxjs';
 import { GiraCardComponent } from '../gira-card/gira-card.component';
 import { GiraService } from '../../services/gira.service';
 import { Gira } from '../../models/gira.model';
-import { NOMES_MESES } from '../../utils/date.util';
+import { NOMES_MESES, ordenarGiras } from '../../utils/date.util';
 
 type MesOpcao = { valor: number; nome: string };
 
@@ -57,7 +57,7 @@ export class GirasPageComponent implements OnInit {
         }),
       )
       .subscribe({
-        next: (giras) => this.giras.set(giras),
+        next: (giras) => this.giras.set(ordenarGiras(giras)),
         error: () => this.erro.set(true),
       });
   }
@@ -71,7 +71,7 @@ export class GirasPageComponent implements OnInit {
       .getPorMes(mes)
       .pipe(finalize(() => this.trocandoMes.set(false)))
       .subscribe({
-        next: (giras) => this.giras.set(giras),
+        next: (giras) => this.giras.set(ordenarGiras(giras)),
         error: () => this.erro.set(true),
       });
   }
